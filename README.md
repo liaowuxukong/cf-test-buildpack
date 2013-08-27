@@ -1,4 +1,4 @@
-loudFoundry Test Buildpack
+CloudFoundry Test Buildpack
 ===========================
 
 This is a simple build pack that just dumps information about the build pack environment, in particular during the compile process.
