@@ -50,7 +50,7 @@ perl -v
 
 cd ../
 echo "Creating script to start a small Python Web server"
-cat > "$BUILD_DIR/boot.rb" <<EOF
+cat > "$BUILD_DIR/boot.py" <<EOF
 #!/usr/bin/env python
 #
 # Simple HTTP Server for accessing files in target director
