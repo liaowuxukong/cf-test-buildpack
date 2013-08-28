@@ -52,6 +52,8 @@ python -V
 ruby -v
 perl -v
 
+echo -e "\n\n"
+java -version
 
 cd ../
 echo "Creating script to start a small Python Web server"
