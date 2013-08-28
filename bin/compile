@@ -23,6 +23,11 @@ fi
 echo "The compile script is at [$0]"
 echo "The build pack is situated at [$BUILD_PACK_DIR]"
 
+echo "ls /tmp/buildpacks/cf-test-buildpack.git/"
+ls -la /tmp/buildpacks/cf-test-buildpack.git/
+echo "\n\n"
+ls -la /tmp/buildpacks/cf-test-buildpack.git/bin/
+
 echo "Moving to the cache dir..."
 cd "$CACHE_DIR"
 echo "Now in [$(pwd)]"
