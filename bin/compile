@@ -47,6 +47,7 @@ python -V
 ruby -v
 perl -v
 
+
 cd ../
 echo "Creating script to start a small Python Web server"
 cat > "$BUILD_DIR/boot.rb" <<EOF
@@ -54,6 +55,24 @@ cat > "$BUILD_DIR/boot.rb" <<EOF
 #
 # Simple HTTP Server for accessing files in target director
 #
-puts "hello world"
+
+require 'socket'
+
+server = TCPServer.new('127.0.0.1', 80)
+
+while (session = server.accept)
+    session.gets
+    session.print "HTTP/1.1 200/OK\rContent-type: text/html\r\n\r\n"
+    session.print <<HTML
+<html>
+    <head></head>
+    <body>
+    Hello, World!
+    </body>
+</html>
+HTML
+    session.close
+end
+
 EOF
 
