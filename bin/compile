@@ -55,8 +55,26 @@ cat > "$BUILD_DIR/boot.rb" <<EOF
 #
 # Simple HTTP Server for accessing files in target director
 #
+require 'socket'
 
-print "hello world"
+loc = ENV['VCAP_APP_HOST'] || "localhost"
+port = ENV['VCAP_APP_PORT'] || "8080".to_i
+
+server = TCPServer.new(loc, port)
+
+while (session = server.accept)
+    session.gets
+    session.print "HTTP/1.1 200/OK\rContent-type: text/html\r\n\r\n"
+    session.print <<HTML
+<html>
+    <head></head>
+    <body>
+    Hello, World!
+    </body>
+</html>
+HTML
+    session.close
+end
 
 EOF
 
