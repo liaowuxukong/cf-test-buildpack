@@ -53,7 +53,7 @@ ruby -v
 perl -v
 
 echo -e "\n\n"
-java -version
+uname -a
 
 cd ../
 echo "Creating script to start a small Python Web server"
