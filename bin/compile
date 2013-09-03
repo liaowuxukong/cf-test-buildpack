@@ -64,7 +64,7 @@ cat > "$BUILD_DIR/boot.rb" <<EOF
 #
 require 'socket'
 
-loc = ENV['VCAP_APP_HOST'] || "127.0.0.1"
+loc = ENV['VCAP_APP_HOST'] 
 port = ENV['VCAP_APP_PORT'] || "8080".to_i
 
 server = TCPServer.new(loc, port)
