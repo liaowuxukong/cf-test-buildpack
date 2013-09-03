@@ -23,23 +23,10 @@ fi
 echo "The compile script is at [$0]"
 echo "The build pack is situated at [$BUILD_PACK_DIR]"
 
-echo "ls /tmp/buildpacks/cf-test-buildpack.git/"
-ls -la /tmp/buildpacks/cf-test-buildpack.git/
-echo "\n\n"
-ls -la /tmp/buildpacks/cf-test-buildpack.git/bin/
-
 echo "Moving to the cache dir..."
 cd "$CACHE_DIR"
 echo "Now in [$(pwd)]"
 
-echo "Directory listing:"
-ls -la
-
-echo "Listing Build Pack Directory:"
-ls -la /tmp/buildpacks
-
-echo "Listing Build Pack Cache:"
-ls -la "$BUILDPACK_CACHE"
 
 echo "Listing Platform Config:"
 cat "$PLATFORM_CONFIG"
@@ -50,7 +37,6 @@ env
 echo "Listing script versions:"
 python -V
 ruby -v
-perl -v
 
 echo -e "\n\n"
 uname -a
@@ -64,7 +50,8 @@ cat > "$BUILD_DIR/boot.rb" <<EOF
 #
 require 'socket'
 
-puts "aaaaaaaaaaaaaaaaaaaaaaaa"
+puts "*******************************"
+
 loc = ENV['VCAP_APP_HOST'] 
 port = ENV['VCAP_APP_PORT'] || "8080".to_i
 
