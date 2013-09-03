@@ -7,17 +7,17 @@ CACHE_DIR=$2
 BUILD_PACK_DIR=$(dirname $(dirname $0))
 
 if [ ! -d "$BUILD_DIR" ]; then
-  echo "Build directory [$BUILD_DIR] does not exist, creating"
+echo "Build directory [$BUILD_DIR] does not exist, creating"
   mkdir -p "$BUILD_DIR"
 else
-  echo "Build directory [$BUILD_DIR] exists"
+echo "Build directory [$BUILD_DIR] exists"
 fi
 
 if [ ! -d "$CACHE_DIR" ]; then
-  echo "Cache directory [$CACHE_DIR] does not exist, creating"
+echo "Cache directory [$CACHE_DIR] does not exist, creating"
   mkdir -p "$CACHE_DIR"
 else
-  echo "Cache directory [$CACHE_DIR] exists"
+echo "Cache directory [$CACHE_DIR] exists"
 fi
 
 echo "The compile script is at [$0]"
@@ -27,6 +27,14 @@ echo "Moving to the cache dir..."
 cd "$CACHE_DIR"
 echo "Now in [$(pwd)]"
 
+echo "Directory listing:"
+ls -la
+
+echo "Listing Build Pack Directory:"
+ls -la /tmp/buildpacks
+
+echo "Listing Build Pack Cache:"
+ls -la "$BUILDPACK_CACHE"
 
 echo "Listing Platform Config:"
 cat "$PLATFORM_CONFIG"
@@ -37,9 +45,7 @@ env
 echo "Listing script versions:"
 python -V
 ruby -v
-
-echo -e "\n\n"
-uname -a
+perl -v
 
 cd ../
 echo "Creating script to start a small Python Web server"
@@ -53,21 +59,21 @@ import SocketServer
 import os
 import sys
 
-print "aaaaaaaaaaaaaaaaaaaa"
-
+print "aaaaaa"
 print os.environ.get('VCAP_APP_HOST', 'localhost')
-
 print int(os.environ.get('VCAP_APP_PORT', 8080))
 
-if len(sys.argv) == 2:
-	print 'Serving files from [%s]' % sys.argv[1]
-	os.chdir(sys.argv[1])
-else:
-	print 'Service files from [%s]' % os.getcwd()
 
-	httpd = SocketServer.TCPServer(
-		(os.environ.get('VCAP_APP_HOST', 'localhost'),
-		int(os.environ.get('VCAP_APP_PORT', 8080))),
-		SimpleHTTPServer.SimpleHTTPRequestHandler)
-	httpd.serve_forever()
+if len(sys.argv) == 2:
+print 'Serving files from [%s]' % sys.argv[1]
+os.chdir(sys.argv[1])
+else:
+print 'Service files from [%s]' % os.getcwd()
+
+httpd = SocketServer.TCPServer(
+(os.environ.get('VCAP_APP_HOST', 'localhost'),
+int(os.environ.get('VCAP_APP_PORT', 8080))),
+SimpleHTTPServer.SimpleHTTPRequestHandler)
+httpd.serve_forever()
 EOF
+
