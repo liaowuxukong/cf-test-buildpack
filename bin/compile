@@ -55,7 +55,7 @@ import sys
 
 print "aaaaaaaaaaaaaaaaaaaa"
 
-print os.environ.get('VCAP_APP_HOST', 'localhost'
+print os.environ.get('VCAP_APP_HOST', 'localhost')
 
 print "int(os.environ.get('VCAP_APP_PORT', 8080))"
 
