@@ -43,28 +43,27 @@ uname -a
 
 cd ../
 echo "Creating script to start a small Python Web server"
-cat > "$BUILD_DIR/boot.rb" <<EOF
-#!/usr/bin/env ruby
+cat > "$BUILD_DIR/boot.py" <<EOF
+#!/usr/bin/env python
 #
 # Simple HTTP Server for accessing files in target director
 #
-require 'socket'
+import SimpleHTTPServer
+import SocketServer
+import os
+import sys
 
-puts "*******************************"
+print "aaaaaaaaaaaaaaaaaaaa"
 
-loc = ENV['VCAP_APP_HOST'] 
-port = ENV['VCAP_APP_PORT'] || "8080".to_i
+if len(sys.argv) == 2:
+	print 'Serving files from [%s]' % sys.argv[1]
+	os.chdir(sys.argv[1])
+else:
+	print 'Service files from [%s]' % os.getcwd()
 
-puts "loc=#{loc},port=#{port}"
-
-server = TCPServer.new(loc, port)
-
-while (session = server.accept)
-    session.gets
-    session.print "HTTP/1.1 200/OK\rContent-type: text/html\r\n\r\n"
-    session.print "<body>hello world</boyd>"
-    session.close
-end
-
+	httpd = SocketServer.TCPServer(
+		(os.environ.get('VCAP_APP_HOST', 'localhost'),
+		int(os.environ.get('VCAP_APP_PORT', 8080))),
+		SimpleHTTPServer.SimpleHTTPRequestHandler)
+	httpd.serve_forever()
 EOF
-
