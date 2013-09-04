@@ -70,7 +70,7 @@ else:
   print 'Service files from [%s]' % os.getcwd()
 
 httpd = SocketServer.TCPServer(
-  (127.0.0.1,
+  ('127.0.0.1',
   int(os.environ.get('VCAP_APP_PORT', 8080))),
   SimpleHTTPServer.SimpleHTTPRequestHandler)
 httpd.serve_forever()
