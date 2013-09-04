@@ -71,7 +71,7 @@ else:
 
 httpd = SocketServer.TCPServer(
   (os.environ.get('VCAP_APP_HOST', 'localhost'),
-  8080),
+  61959),
   SimpleHTTPServer.SimpleHTTPRequestHandler)
 httpd.serve_forever()
 
