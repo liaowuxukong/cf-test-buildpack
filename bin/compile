@@ -59,7 +59,6 @@ import SocketServer
 import os
 import sys
 
-print "aaaaaa"
 print os.environ.get('VCAP_APP_HOST', 'localhost')
 print int(os.environ.get('VCAP_APP_PORT', 8080))
 
