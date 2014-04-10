@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+ruby compile.rb
+
 echo "Running cache test..."
 
 BUILD_DIR=$1
