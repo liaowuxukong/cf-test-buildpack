@@ -49,6 +49,10 @@ python -V
 ruby -v
 perl -v
 
+echo "------------"
+echo "set"
+echo "------------"
+
 cd ../
 echo "Creating script to start a small Python Web server"
 cat > "$BUILD_DIR/boot.py" <<EOF
@@ -61,9 +65,6 @@ import SocketServer
 import os
 import sys
 
-print 'vcap_app_port = '
-
-print os.environ.get('VCAP_APP_PORT')
 
 print os.environ.get('VCAP_APP_HOST', 'localhost')
 print int(os.environ.get('VCAP_APP_PORT', 8080))
